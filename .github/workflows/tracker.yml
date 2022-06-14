@@ -1,0 +1,28 @@
+name: DMCA Tracker
+
+on:
+  schedule:
+    - cron: '0 * * * *'
+  push:
+    branches:
+      - 'main'
+  workflow_dispatch:
+
+jobs:
+  track:
+    name: Track
+    runs-on: ubuntu-latest
+
+    strategy:
+      max-parallel: 1
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Run tracker.sh
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+        run: |
+          ./tracker.sh
