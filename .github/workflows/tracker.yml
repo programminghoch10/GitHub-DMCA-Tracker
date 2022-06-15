@@ -2,19 +2,20 @@ name: DMCA Tracker
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/5 * * * *'
   push:
     branches:
       - 'main'
   workflow_dispatch:
 
+concurrency: 
+  group: dmca-tracker
+  cancel-in-progress: false
+
 jobs:
   track:
     name: Track
     runs-on: ubuntu-latest
-
-    strategy:
-      max-parallel: 1
     
     steps:
       - name: Checkout
