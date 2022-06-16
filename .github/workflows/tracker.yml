@@ -2,7 +2,7 @@ name: DMCA Tracker
 
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '0 * * * *'
   push:
     branches:
       - 'main'
